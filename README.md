@@ -98,3 +98,16 @@ echo '{"ping": true}' | invoke-go-lambda --stdin-is-payload --port=8001 | jq -r 
 
 The `--stdin-is-payload` parameter reads standard input, and uses that as the
 payload.
+
+### Increasing the deadline
+
+The Lambda protocol requires you provide a deadline to all invocations. If
+you're not using `--stdin-is-payload`, then you can populate the `deadline`
+field yourself.
+
+If you're using `--stdin-is-payload`, then the deadline is, by default, 1 second
+into the future. To increase that deadline, pass `--deadline=N`. For example:
+
+```bash
+echo '{"ping": true}' | invoke-go-lambda --port=8001 --stdin-is-payload --deadline=5
+```
