@@ -18,6 +18,10 @@ go install github.com/ucarion/invoke-go-lambda
 To run it, first invoke your lambda and force it to run on a particular port of
 your choosing using the `_LAMBDA_SERVER_PORT` env var:
 
+> The `_LAMBDA_SERVER_PORT` variable is something AWS's Lambda SDK uses. As long
+> as you're using `github.com/aws/aws-lambda-go`, this variable will work
+> automatically.
+
 ```bash
 # As an example, we'll use the "hello" lambda in this repo.
 _LAMBDA_SERVER_PORT=8001 go run ./examples/hello/...
